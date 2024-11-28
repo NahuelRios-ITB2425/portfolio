@@ -1,0 +1,613 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="Start your development with JohnDoe landing page.">
+    <meta name="author" content="Devcrud">
+    <title>Nahuel Rios Cabrejas</title>
+    <link rel="icon" href="./assets/imgs/Me.ico" type="image/ico"/>
+    <!-- font icons -->
+    <link rel="stylesheet" href="assets/vendors/themify-icons/css/themify-icons.css">
+    <!-- Bootstrap + JohnDoe main styles -->
+	<link rel="stylesheet" href="assets/css/johndoe.css">
+    <script>// Primero, añade estos estilos en tu <head>
+        const styleSheet = document.createElement('style');
+        styleSheet.textContent = `
+            /* Estilos base para los enlaces de navegación */
+            .nav-link, .dropdown-item {
+                position: relative;
+                transition: color 0.3s ease;
+            }
+        
+            /* Animación de pulse */
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);
+                }
+                100% {
+                    transform: scale(1);
+                }
+            }
+        
+            /* Animación de cambio de color */
+            @keyframes colorChange {
+                0% { color: #ff5733; }
+                25% { color: #33c4ff; }
+                50% { color: #ff33a1; }
+                75% { color: #9b59b6; }
+                100% { color: #2ecc71; }
+            }
+        
+            /* Estilo para el enlace activo */
+            .nav-link.active, .dropdown-item.active {
+                color: #ff0000 !important;
+                animation: none !important;
+            }
+        `;
+        document.head.appendChild(styleSheet);
+        
+        // Función para obtener la ruta actual sin el nombre del dominio
+        function getCurrentPath() {
+            return window.location.pathname.split('/').pop() || 'index.html';
+        }
+        
+        // Función para manejar las animaciones de los enlaces
+        function setupNavAnimations() {
+            const currentPath = getCurrentPath();
+            const navLinks = document.querySelectorAll('.nav-link, .dropdown-item');
+        
+            navLinks.forEach(link => {
+                const linkPath = link.getAttribute('href').split('/').pop();
+                
+                // Determinar si este es el enlace activo
+                if (linkPath === currentPath) {
+                    link.classList.add('active');
+                } else {
+                    // Agregar eventos solo a enlaces no activos
+                    link.addEventListener('mouseenter', () => {
+                        if (!link.classList.contains('active')) {
+                            link.style.animation = 'pulse 1s ease-in-out infinite, colorChange 3s linear infinite';
+                        }
+                    });
+        
+                    link.addEventListener('mouseleave', () => {
+                        link.style.animation = '';
+                    });
+                }
+            });
+        }
+        
+        // Inicializar cuando el DOM esté cargado
+        document.addEventListener('DOMContentLoaded', setupNavAnimations);
+        document.addEventListener("scroll", () => { 
+        const scrollThreshold = 30; // Umbral de desplazamiento en porcentaje (30%)
+        const brandImg = document.querySelector(".navbar .brand .brand-img");
+        const brandTxt = document.querySelector(".navbar .brand .brand-txt");
+
+        // Calcula el porcentaje de desplazamiento
+        const scrollTop = window.scrollY; // Cuánto se ha desplazado hacia abajo
+        const windowHeight = window.innerHeight; // Altura de la ventana visible
+        const scrollPercentage = (scrollTop / windowHeight) * 100;
+
+        // Si el scroll ha pasado el umbral (30%), aplica la animación
+        if (scrollPercentage > scrollThreshold) {
+            // Imagen: desvanece y mueve hacia arriba
+            brandImg.style.transition = "opacity 0.5s, transform 0.5s";
+            brandImg.style.opacity = "0";
+            brandImg.style.transform = "translate(-50%, -80%)"; // Mueve la imagen hacia arriba
+
+            // Texto: aparece desde más abajo y sube hacia el centro
+            if (!brandTxt.classList.contains('frozen-text')) {
+            brandTxt.style.transition = "opacity 1s, transform 1s";
+            brandTxt.style.opacity = "1";
+            brandTxt.style.transform = "translateY(150px)"; // Empieza desde mucho más abajo y sube hacia el centro
+
+            // Añadir la clase para "congelar" el texto después de la animación
+            brandTxt.classList.add("frozen-text");
+            }
+        } else {
+            // Imagen: vuelve a su estado original sin moverse en exceso
+            brandImg.style.transition = "opacity 0.5s, transform 0.5s";
+            brandImg.style.opacity = "1";
+            brandImg.style.transform = "translate(-50%, -50%)"; // Vuelve al centro de forma fluida
+
+            // Texto: desaparece y se mueve hacia abajo
+            brandTxt.style.transition = "opacity 1s, transform 1s";
+            brandTxt.style.opacity = "0";
+            brandTxt.style.transform = "translateY(50px)"; // Desplaza el texto hacia abajo
+
+            // Elimina la clase para permitir que el texto vuelva a moverse
+            brandTxt.classList.remove("frozen-text");
+        }
+        });
+        </script>
+</head>
+<body data-spy="scroll" data-target=".navbar" data-offset="40" id="home">
+    <header class="header header2 header3">
+        <div class="container container2 container3">
+            <div class="header-content header-content2 header-content3">
+                <h4 class="header-subtitle header-subtitle2 header-subtitle3" style="font-family: 'Times New Roman', Times, serif;">Hello, I am</h4>
+                <h2 class="header-title header-title2 header-title3" style="font-family: 'Times New Roman', Times, serif;">Nahuel Rios Cabrejas</h2>
+                <h6 class="header-mono header-mono2 header-mono3" style="font-family: 'Times New Roman', Times, serif;" >Administrator | Cybersecurity</h6>
+                <a href="./assets/docs/Rios Cabrejas, Nahuel - CV.pdf" download class="btn btn-primary btn-rounded">
+                    <i class="ti-printer pr-2" ></i>Download CV 
+                </a>
+                <ul class="custom-social-icons">
+                    <li class="custom-social-item">
+                        <a class="custom-social-link" href="https://www.facebook.com" target="_blank">
+                            <i class="ti-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="custom-social-item">
+                        <a class="custom-social-link" href="https://twitter.com" target="_blank">
+                            <i class="ti-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="custom-social-item">
+                        <a class="custom-social-link" href="https://www.google.com" target="_blank">
+                            <i class="ti-google" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="custom-social-item">
+                        <a class="custom-social-link" href="https://www.instagram.com" target="_blank">
+                            <i class="ti-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li class="custom-social-item">
+                        <a class="custom-social-link" href="https://github.com" target="_blank">
+                            <i class="ti-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </header>
+    <!-- Navigation Menu --> 
+<nav class="navbar sticky-top navbar-expand-lg navbar-light bg-white" data-spy="affix" data-offset-top="510">
+    <div class="container">
+        <button class="navbar-toggler ml-auto" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse mt-sm-20 navbar-collapse" id="navbarSupportedContent">
+            <ul class="navbar-nav ml-3"> <!-- Adjust spacing of Home and About -->
+                <!-- Home link -->
+                <li class="nav-item">
+                    <a href="./index.html" class="nav-link">Home</a>
+                </li>
+                <!-- About link -->
+                <li class="nav-item">
+                    <a href="./about.html" class="nav-link">About</a>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav brand mx-auto">
+                <!-- Brand image and name (centered) -->
+                <img src="./assets/imgs/SquaredMe.jpg" alt="Nahuel Rios Cabrejas" class="brand-img" >
+                <li class="brand-txt">
+                    <h5 class="brand-title">Nahuel Rios Cabrejas</h5>
+                    <div class="brand-subtitle">Administrator | Cybersecurity</div>
+                </li>
+            </ul>
+
+            <ul class="navbar-nav ml-1"> <!-- Adjust spacing of Projects and Contact -->
+                <!-- Projects menu with dropdown -->
+                <li class="nav-item dropdown">
+                    <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        Projects
+                    </a>
+                    <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                        <a class="dropdown-item" href="./project1.html">Project 1: BigoTech</a>
+                        <a class="dropdown-item" href="./project2.html">Project 2: SmartWaste</a>
+                        <a class="dropdown-item" href="./project3.html">Project 3: CyberShield</a>
+                        <a class="dropdown-item" href="./project4.html">Project 4: DataGuard</a>
+                        <a class="dropdown-item" href="./project5.html">Project 5: CryptoDefender</a>
+                        <a class="dropdown-item" href="./project6.html">Project 6: SecureByte</a>
+                        <a class="dropdown-item" href="./project7.html">Project 7: NetSecure</a>
+                        <a class="dropdown-item" href="./project8.html">Project 8: FireWallX</a>
+                        <a class="dropdown-item" href="./project9.html">Project 9: CipherLock</a>
+                        <a class="dropdown-item" href="./project10.html">Project 10: HackShield</a>
+                    </div>
+                </li>
+
+                <!-- Contact link -->
+                <li class="nav-item last-item">
+                    <a href="./contact.html" class="nav-link">Contact</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+    <div class="container-fluid">
+        <div id="about" class="row about-section">
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Who am I ?</h3>
+                <span class="line mb-5"></span>
+                <h5 class="mb-3">A CiberSecurity Administrator / And Ethical Hacking</h5>
+                <p class="mt-20">I am a Cybersecurity Administrator dedicated to protecting data and hardening systems against digital threats.</p>
+                <button class="btn btn-outline-danger">
+                    <a href="./assets/docs/Rios Cabrejas, Nahuel - CV.pdf" download style="text-decoration: none; color: inherit;">
+                        <i class="icon-down-circled2"></i>Download My CV
+                    </a>
+                </button>
+                <!-- Botón para alternar tema -->
+                <button class="theme-toggle" style="position: fixed; top: 20px; right: 20px; padding: 10px; background-color: #000; color: white; border-color: white; border-radius: 5px; cursor: pointer;">
+                Change Theme
+    </button>
+            </div>
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">Personal Info</h3>
+                <span class="line mb-5"></span>
+                <ul class="mt40 info list-unstyled">
+                    <li><span>Birthdate</span> : 11/09/2006</li>
+                    <li><span>Email</span> : nahuel.rios.7e6@itb.cat</li>
+                    <li><span>Phone</span> : + 34 123456789</li>
+                    <li><span>Name</span> : Nahuel Rios Cabrejas </li>
+                    <li><span>Address</span> : Carrer d'Aiguablava, 121. </li>
+                </ul>
+                <ul class="social-icons pt-3">
+                    <!-- Facebook -->
+                    <li class="social-item">
+                        <a class="social-link" href="https://www.facebook.com" target="_blank">
+                            <i class="ti-facebook" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    
+                    <!-- Twitter -->
+                    <li class="social-item">
+                        <a class="social-link" href="https://twitter.com" target="_blank">
+                            <i class="ti-twitter" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    
+                    <!-- Google -->
+                    <li class="social-item">
+                        <a class="social-link" href="https://www.google.com" target="_blank">
+                            <i class="ti-google" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    
+                    <!-- Instagram -->
+                    <li class="social-item">
+                        <a class="social-link" href="https://www.instagram.com" target="_blank">
+                            <i class="ti-instagram" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    
+                    <!-- GitHub -->
+                    <li class="social-item">
+                        <a class="social-link" href="https://github.com" target="_blank">
+                            <i class="ti-github" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>  
+            </div>
+            <div class="col-lg-4 about-card">
+                <h3 class="font-weight-light">My Expertise</h3>
+                <span class="line mb-5"></span>
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><img src="./assets/imgs/packettracer.png" alt="Packet Tracer" class="icon-lg1"></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>Packet Tracer</h6>
+                        <p class="subtitle"> Creation and simulation of advanced networks with Packet Tracer.</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><img src="./assets/imgs/ubuntu_windows.png" alt="ubuntu_windows" class="icon-lg2"></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>Windows & Ubuntu</h6>
+                        <p class="subtitle">Management of Windows and Ubuntu operating systems at a professional level.</p>
+                        <hr>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-1 text-danger pt-1"><img src="./assets/imgs/python.png" alt="Python" class="icon-lg3"></div>
+                    <div class="col-10 ml-auto mr-3">
+                        <h6>Python</h6>
+                        <p class="subtitle">Development of professional solutions and automation using Python.</p>
+                        <hr>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!-- Proyectos -->
+<section class="section" id="blog">
+    <div class="container">
+        <h2 class="mb-6">Latest <span class="text-danger">Projects</span></h2>
+        <span class="linee mb-6"></span>
+        <div class="row">
+            <!-- Proyecto 1 -->
+            <div class="blog-card">
+                <div class="img-holder">
+                    <a href="./project1.html">
+                        <img src="./assets/imgs/Bigotech1.png" alt="Image of project 1">
+                    </a>
+                </div>
+                <div class="content-holder">
+                    <a href="./project1.html">
+                        <h6 class="title" style="font-family: 'Times New Roman', serif;">
+                            <span style="font-weight: bold; color: black;">Project 1:</span> BigoTech
+                        </h6>
+                    </a>
+                    <p class="post-details">
+                        <span style="font-family: 'Times New Roman', serif; font-weight: bold !important;">Made in:</span> FP at the ITB
+                    </p>
+                    <p style="font-family: 'Times New Roman', serif;">
+                        BigoTech is a project that I carried out at a medium level focused on the implementation of secure and efficient technological infrastructure for a company, using the LAMP stack and much more.
+                    </p>
+                    <!-- Enlace al proyecto 1 -->
+                    <a href="./project1.html" class="read-more">
+                        <strong>Go deeper</strong> <i class="ti-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+
+            <!-- Proyecto 2 -->
+            <div class="blog-card">
+                <div class="img-holder">
+                    <a href="./project2.html">
+                        <img src="./assets/imgs/SmartWaste.png" alt="Image of project 2">
+                    </a>
+                </div>
+                <div class="content-holder">
+                    <a href="./project2.html">
+                        <h6 class="title" style="font-family: 'Times New Roman', serif;">
+                            <span style="font-weight: bold; color: black;">Project 2:</span> SmartWaste
+                        </h6>
+                    </a>
+                    <p class="post-details">
+                        <span style="font-family: 'Times New Roman', serif; font-weight: bold !important;">Made in:</span> FP at the ITB
+                    </p>                    
+                    <p style="font-family: 'Times New Roman', serif;">
+                        Smart Waste is a mid-grade project that leverages advanced computer vision and artificial intelligence technologies to automate the process of waste sorting. By utilizing cameras, sensors, and machine learning algorithms.
+                    </p>
+                    <!-- Enlace al proyecto 2 -->
+                    <a href="./project2.html" class="read-more">
+                        <strong>Go deeper</strong> <i class="ti-angle-double-right"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<footer class="footer py-3">
+        <div class="container d-flex justify-content-between align-items-center" style="height: 50px;">
+            <!-- Copyright y DevCRUD -->
+            <p class="small mb-0 text-light" style="line-height: 20px; font-size: 10px;">
+                &copy; <script>document.write(new Date().getFullYear())</script> Created With <i class="ti-heart text-danger"></i> By <a href="http://devcrud.com" target="_blank"><span class="text-danger" title="Bootstrap 4 Themes and Dashboards">DevCRUD</span></a>
+            </p>
+    
+            <!-- Social icons en el centro -->
+            <ul class="social-icons d-flex justify-content-center mb-0" style="gap: 20px;">
+                <!-- Facebook -->
+                <li class="social-item">
+                    <a class="social-link text-light" href="https://www.facebook.com" target="_blank">
+                        <i class="ti-facebook" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <!-- Twitter -->
+                <li class="social-item">
+                    <a class="social-link text-light" href="https://twitter.com" target="_blank">
+                        <i class="ti-twitter" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <!-- Google -->
+                <li class="social-item">
+                    <a class="social-link text-light" href="https://www.google.com" target="_blank">
+                        <i class="ti-google" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <!-- Instagram -->
+                <li class="social-item">
+                    <a class="social-link text-light" href="https://www.instagram.com" target="_blank">
+                        <i class="ti-instagram" aria-hidden="true"></i>
+                    </a>
+                </li>
+                <!-- GitHub -->
+                <li class="social-item">
+                    <a class="social-link text-light" href="https://github.com" target="_blank">
+                        <i class="ti-github" aria-hidden="true"></i>
+                    </a>
+                </li>
+            </ul>
+    
+            <!-- Texto adicional alineado a la derecha -->
+            <p class="small mb-0 text-light" style="font-family: 'Times New Roman', Times, serif; text-align: right; line-height: 50px; font-size: 10px;">
+                Nahuel Rios Cabrejas | MDS | ASIXc1A
+            </p>
+        </div>
+    </footer>
+    
+
+	<!-- core  -->
+    <script src="assets/vendors/jquery/jquery-3.4.1.js"></script>
+    <script src="assets/vendors/bootstrap/bootstrap.bundle.js"></script>
+
+    <!-- bootstrap 3 affix -->
+    <script src="assets/vendors/bootstrap/bootstrap.affix.js"></script>
+
+    <!-- Isotope  -->
+    <script src="assets/vendors/isotope/isotope.pkgd.js"></script>
+    
+    <!-- Google mpas -->
+    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCtme10pzgKSPeJVJrG1O3tjR6lk98o4w8&callback=initMap"></script>
+
+    <!-- JohnDoe js -->
+    <script src="assets/js/johndoe.js"></script>
+
+    <!-- Tu código de scripts al final del body -->
+    <script>
+        // Selecciona todos los enlaces del menú
+        const navLinks = document.querySelectorAll('.nav-link');
+        
+        // Función para agregar la animación de pulso y cambio dinámico de colores al pasar el cursor
+        navLinks.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                // Verifica si el enlace no es el de la página actual
+                if (!link.classList.contains('current')) {
+                    link.style.animation = "pulse 1s ease-in-out infinite, colorChange 3s linear infinite"; // Animación de pulso y cambio de color
+                }
+            });
+        
+            link.addEventListener('mouseleave', () => {
+                // Si el enlace no es el de la página actual, detiene las animaciones
+                if (!link.classList.contains('current')) {
+                    link.style.animation = ""; // Detiene todas las animaciones
+                    link.style.color = ""; // Restaura el color original
+                }
+            });
+        });
+        
+        // Función para marcar el enlace actual
+        function setCurrentPage() {
+            // Obtiene la ruta actual de la página
+            const currentPage = window.location.pathname;
+        
+            // Recorremos los enlaces para asignarles la clase 'current' al que corresponda
+            navLinks.forEach(link => {
+                const linkPath = new URL(link.href).pathname; // Extrae el pathname de cada enlace
+        
+                // Comparamos la ruta actual con el enlace. Usamos startsWith() para que cualquier subdirectorio también sea reconocido.
+                if (currentPage.startsWith(linkPath) && currentPage !== linkPath) {
+                    link.classList.add('current'); // Añade la clase 'current' al enlace del directorio actual
+                } else {
+                    link.classList.remove('current'); // Elimina la clase 'current' de los demás enlaces
+                }
+            });
+        }
+        
+        // Llama a la función para detectar y marcar el enlace actual
+        setCurrentPage();
+        
+        // Agrega los estilos y animaciones al documento
+        const style = document.createElement('style');
+        style.innerHTML = `
+            /* Animación de pulso suave */
+            @keyframes pulse {
+                0% {
+                    transform: scale(1); /* Tamaño original */
+                }
+                50% {
+                    transform: scale(1.1); /* Aumenta el tamaño ligeramente */
+                }
+                100% {
+                    transform: scale(1); /* Vuelve al tamaño original */
+                }
+            }
+        
+            /* Animación para el cambio dinámico de colores */
+            @keyframes colorChange {
+                0% {
+                    color: #ff5733; /* Primer color */
+                }
+                25% {
+                    color: #33c4ff; /* Segundo color */
+                }
+                50% {
+                    color: #ff33a1; /* Tercer color */
+                }
+                75% {
+                    color: #9b59b6; /* Cuarto color */
+                }
+                100% {
+                    color: #2ecc71; /* Quinto color */
+                }
+            }
+        
+            /* Estilo general para los enlaces */
+            .nav-link {
+                transition: transform 0.3s ease, color 0.3s ease; /* Transición suave para color y tamaño */
+                color: #000; /* Color original */
+            }
+        
+            /* Estilo para la clase current (enlace de la página actual) */
+            .nav-link.current {
+                color: #ff0000; /* Color fijo para el enlace de la página actual */
+                animation: none; /* Desactiva la animación en el enlace de la página actual */
+                pointer-events: none; /* Evita que el enlace activo reciba eventos de mouse (por si hay interacción con el usuario) */
+            }
+            
+            /* Estilo adicional para los enlaces durante el hover */
+            .nav-link:hover {
+                /* Aquí no hacemos nada con color porque ya se gestiona con la animación colorChange */
+            }
+        `;
+        
+        document.head.appendChild(style);
+        
+        // -------------------- Cambio de tema --------------------
+        
+        // Seleccionar el botón de cambio de tema
+        const themeToggleButton = document.querySelector('.theme-toggle');
+        let cycleInterval;
+        let currentMode = 0;
+        let isCycling = false;
+        const modes = ['blue-mode', 'grey-mode', 'pink-mode'];
+
+        themeToggleButton.addEventListener('click', () => {
+            if (!isCycling) {
+                // Start cycling
+                isCycling = true;
+                document.body.classList.add(modes[currentMode]);
+                
+                cycleInterval = setInterval(() => {
+                    document.body.classList.remove(modes[currentMode]);
+                    currentMode = (currentMode + 1) % modes.length;
+                    document.body.classList.add(modes[currentMode]);
+                }, 1000);
+            } else {
+                // Stop cycling and return to original state
+                clearInterval(cycleInterval);
+                document.body.classList.remove(modes[currentMode]);
+                isCycling = false;
+                currentMode = 0;
+            }
+        });
+        
+        // -------------------- Animación del botón de descarga --------------------
+        
+        // 1. Botón de descarga con animación de "pulse" suave
+        const downloadButton = document.querySelector(".btn-primary");
+        
+        downloadButton.addEventListener("mouseenter", () => {
+            downloadButton.style.animation = "pulse 1s ease-in-out infinite"; // Animación de "pulse"
+        });
+        
+        downloadButton.addEventListener("mouseleave", () => {
+            downloadButton.style.animation = ""; // Cuando el cursor se va, la animación se detiene
+        });
+        
+        downloadButton.addEventListener("click", (event) => {
+            event.preventDefault(); // Evita el comportamiento por defecto del botón
+            alert("🎉 Thank you for looking at my CV! 🎉"); // Mensaje emergente personalizado
+            window.location.href = "./assets/docs/Rios Cabrejas, Nahuel - CV"; // Redirige a la descarga
+        });
+        
+        // Animación de "pulse" para el botón de descarga (resaltado suave)
+        const stylePulse = document.createElement('style');
+        stylePulse.innerHTML = `
+            @keyframes pulse {
+                0% {
+                    transform: scale(1);
+                }
+                50% {
+                    transform: scale(1.1);  // Aumenta el tamaño
+                }
+                100% {
+                    transform: scale(1);  // Vuelve a la medida original
+                }
+            }
+        `;
+        
+        document.head.appendChild(stylePulse);
+        
+        </script>
+    </body>
+</html>
